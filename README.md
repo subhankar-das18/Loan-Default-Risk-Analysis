@@ -159,7 +159,11 @@ Drill into the detail table on Page 3 to inspect individual loans.
 Reference the DAX measures section to understand metric calculations.
 
 Case Study Summary
-Analyzed a portfolio of 601 consumer loans to identify borrower and loan-level drivers of default and delinquency risk. Built a relational data model joining borrower profiles (credit score, income, employment, homeownership) with loan applications (amount, term, interest rate, DTI ratio, payment status). Engineered segmentation dimensions (credit score bands: subprime to super-prime; DTI bands: <20% to 50%+; income and age cohorts) and created 10 DAX measures quantifying portfolio default rate (24%), delinquency rate (41%), and loss exposure ($3M on defaulted loans). Identified high-risk segment: subprime borrowers with DTI >40% exhibit 57% default rate versus 4% for super-prime borrowers with DTI <20%, a 14× difference. Dashboard recommendations: tighten underwriting approval thresholds for subprime + high-DTI applicants, increase pricing on high-risk loan purposes (Wedding, Vacation, Home Improvement), and implement early-warning monitoring for accounts with rising DTI or existing debt burden. Expected impact: potential 40–50% reduction in default losses through selective underwriting tightening.
+Analyzed a portfolio of 601 consumer loans to identify borrower and loan-level drivers of default and delinquency risk.
+ Built a relational data model joining borrower profiles (credit score, income, employment, homeownership) with loan applications (amount, term, interest rate, DTI ratio, payment status). Engineered segmentation dimensions (credit score bands: subprime to super-prime; DTI bands: <20% to 50%+;
+ income and age cohorts) and created 10 DAX measures quantifying portfolio default rate (24%), delinquency rate (41%), and loss exposure ($3M on defaulted loans). Identified high-risk segment: subprime borrowers with DTI >40% exhibit 57% default rate versus 4% for super-prime borrowers with DTI <20%, a 14× difference.
+Dashboard recommendations: tighten underwriting approval thresholds for subprime + high-DTI applicants, increase pricing on high-risk loan purposes (Wedding, Vacation, Home Improvement), and implement early-warning monitoring for accounts with rising DTI or existing debt burden.
+ Expected impact: potential 40–50% reduction in default losses through selective underwriting tightening.
 
 Future Enhancements
 Add time-series analysis to track default rate trends over time.
