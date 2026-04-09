@@ -5,7 +5,7 @@
 Analyzed a portfolio of **601 consumer loans** to identify key drivers of loan default and delinquency risk. Built an interactive **Power BI dashboard** with relational data model and DAX-driven insights to support lending underwriting and pricing decisions.
 
 **Key Finding:** Subprime borrowers (credit score <620) with high debt-to-income ratio (>40%) exhibit a **57% default rate**, compared to just **4%** for super-prime borrowers (≥740 credit score) with low DTI (<20%). This **14× difference** highlights the critical importance of credit score and DTI in risk assessment.
-
+ 
 ---
 
 ## Data Model
