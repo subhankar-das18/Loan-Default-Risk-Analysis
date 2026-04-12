@@ -140,8 +140,6 @@ This analysis and dashboard can help lenders:
 ### Region-wise Default Rate
 ![Region Default Rate](screenshots/region_default_rate.png)
 
-Replace the file names above if your screenshots have different names.
-
 ---
 
 ## How to Use
@@ -150,7 +148,6 @@ Replace the file names above if your screenshots have different names.
 2. Open the `Loan_Default_Risk_Dashboard.pbix` file from the `dashboard` folder in Power BI Desktop.  
 3. If needed, update the data source paths to point to your local CSV files.  
 4. Refresh the data and explore the visuals using the available filters.
-5. [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis)
 
 ---
 
@@ -170,6 +167,6 @@ Replace the file names above if your screenshots have different names.
 Aspiring Data Analyst | SQL | Power BI | Risk Analytics
 
 - GitHub: [subhankar-das18](https://github.com/subhankar-das18)  
-- LinkedIn: *Add your LinkedIn link here*  
+- LinkedIn: *www.linkedin.com/in/subhankar-das-the-analyst*  
 
 Feedback and suggestions are welcome through issues or pull requests.
