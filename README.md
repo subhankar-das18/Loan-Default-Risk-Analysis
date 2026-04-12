@@ -72,7 +72,7 @@ loan-default-risk-analysis/
     └── region_default_rate.png
 ```
 
-Adjust names if your files are slightly different, but keep the structure similar so it looks clean.
+    [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis)
 
 ---
 
@@ -151,7 +151,8 @@ Replace the file names above if your screenshots have different names.
 1. Download the dataset from the `dataset` folder.  
 2. Open the `Loan_Default_Risk_Dashboard.pbix` file from the `dashboard` folder in Power BI Desktop.  
 3. If needed, update the data source paths to point to your local CSV files.  
-4. Refresh the data and explore the visuals using the available filters.  
+4. Refresh the data and explore the visuals using the available filters.
+5. [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis)
 
 ---
 
