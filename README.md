@@ -71,9 +71,7 @@ loan-default-risk-analysis/
     ├── income_vs_default.png
     └── region_default_rate.png
 ```
-
-    [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis)
-
+ 
 ---
 
 ## SQL Analysis
