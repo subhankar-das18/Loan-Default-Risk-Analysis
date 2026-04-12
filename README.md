@@ -1,184 +1,176 @@
 # Loan Default Risk Analysis
 
+A data analytics project that studies **loan default behaviour** across different borrower profiles. Using **SQL, Power BI, and Excel/CSV**, this project analyzes which customer segments are more likely to default and builds an interactive dashboard to support better credit risk decisions.
+
+---
+
 ## Project Overview
 
-Analyzed a portfolio of **601 consumer loans** to identify key drivers of loan default and delinquency risk. Built an interactive **Power BI dashboard** with relational data model and DAX-driven insights to support lending underwriting and pricing decisions.
-
-**Key Finding:** Subprime borrowers (credit score <620) with high debt-to-income ratio (>40%) exhibit a **57% default rate**, compared to just **4%** for super-prime borrowers (≥740 credit score) with low DTI (<20%). This **14× difference** highlights the critical importance of credit score and DTI in risk assessment.
- 
----
-
-## Data Model
-
-### Tables
-- **borrower_profiles** (500 borrowers)
-  - Dimensions: age, state, education level, employment status, years employed
-  - Metrics: annual income, credit score, homeownership type, dependents, existing monthly debt
-
-- **loan_applications** (601 loans)
-  - Dimensions: loan purpose, term (months), application date
-  - Metrics: loan amount, interest rate, monthly payment, DTI ratio
-  - Outcomes: loan status (Current, Paid Off, Late, Default), days delinquent, default flag
-
-### Relationship
-- One-to-many: borrower_profiles → loan_applications (one borrower may have multiple loans)
-- Key: borrower_id
-
-### Calculated Columns
-**Borrower Segmentation:**
-- `Credit Score Band`: Subprime (<620), Near-prime (620–679), Prime (680–739), Super-prime (≥740)
-- `Income Band`: <30K, 30K–50K, 50K–75K, 75K–100K, 100K+
-- `Age Band`: <25, 25–34, 35–44, 45–54, 55–64, 65+
-
-**Loan Segmentation:**
-- `DTI Band`: <20%, 20–30%, 30–40%, 40–50%, 50%+
-- `Loan Amount Band`: <5K, 5K–10K, 10K–20K, 20K–35K, 35K+
-- `Interest Rate Band`: <6%, 6–10%, 10–15%, 15%+
-- `Loan Status Simple`: Current, Paid Off, Late, Default
+The objective of this project is to understand patterns behind loan defaults and identify key risk factors such as income level, loan amount, credit-to-income ratio, employment status, and demographics. The dashboard helps credit teams quickly see which applicants are high risk and how defaults are distributed across segments.
 
 ---
 
-## Dashboard Pages
+## Business Problem
 
-### **Page 1: Portfolio Overview**
-- **Cards**: Total Loans (601), Default Rate % (24%), Delinquency Rate % (41%), Default Exposure ($3M)
-- **Charts**:
-  - Loan status distribution (Current: 209, Paid Off: 189, Late: 112, Default: 91)
-  - Default rate by loan purpose (Wedding: 28%, Home Improvement: 27%, Vacation: 26%)
-  - Default rate by state (geographic heatmap)
-- **Slicers**: Year, Loan Purpose, State
+Lending institutions need to balance growth with risk. Approving too many risky loans increases default losses, while being too strict reduces revenue and customer acquisition. This project answers questions like:
 
-### **Page 2: Borrower Risk Profile**
-- **Heatmap**: Default rate by Credit Score Band × DTI Band
-  - Subprime + 50%+ DTI: **57% default** (highest risk)
-  - Super-prime + <20% DTI: **4% default** (lowest risk)
-- **Bar Charts**:
-  - Default rate by income band (lower income = higher default)
-  - Default rate by homeownership (renters: 28%, homeowners: 16%)
-  - Default rate by employment type (part-time: 23%, full-time: 20%)
-- **Insights**: Credit score and DTI are the strongest predictors of default risk
-
-### **Page 3: Loan Characteristics**
-- **Column Charts**:
-  - Default rate by loan amount band (smaller loans riskier)
-  - Default rate by interest rate band (higher rates = higher defaults, driven by risk-based pricing)
-- **Scatter Plot**: DTI ratio vs. Default Rate (bubble size = loan count)
-  - Shows clustering at high default rates in 50–150+ DTI range
-  - Reveals need for DTI limits in approval policy
-- **Detail Table**: Loan-level drill-through (loanid, borrowerid, purpose, amount, DTI, status, default flag)
+- Which borrower groups have the highest default rates?
+- How do income, loan amount, and EMI-to-income ratio affect default risk?
+- Are certain occupations, age groups, or regions more likely to default?
+- What profile characteristics are common among good vs. bad borrowers?
 
 ---
 
-## Key Metrics (DAX Measures)
+## Tools & Technologies
 
-```dax
-Total Loans = COUNTROWS('loan_applications')
+- **SQL** — data extraction, joins, aggregations, risk calculations  
+- **Power BI** — interactive risk dashboard and visual storytelling  
+- **DAX** — measures for default rate, approval rate, and risk scores  
+- **Excel / CSV** — data storage and initial cleaning  
 
-Defaulted Loans = CALCULATE(COUNTROWS('loan_applications'), 'loan_applications'[defaulted] = 1)
+---
 
-Default Rate % = DIVIDE([Defaulted Loans], [Total Loans])
+## Dataset Information
 
-Delinquent Loans = CALCULATE(COUNTROWS('loan_applications'), 'loan_applications'[loanstatus] IN {"Late", "Default"})
+The dataset contains historical loan application records with fields such as:
 
-Delinquency Rate % = DIVIDE([Delinquent Loans], [Total Loans])
+- `Application_ID`
+- `Customer_ID`
+- `Age`
+- `Gender`
+- `Income`
+- `Loan_Amount`
+- `Tenure`
+- `EMI` or `Installment`
+- `Credit_to_Income_Ratio`
+- `Employment_Type`
+- `Marital_Status`
+- `Region`
+- `Default_Flag` (0 = No Default, 1 = Default)
 
-Default Exposure = CALCULATE(SUM('loan_applications'[loanamount]), 'loan_applications'[defaulted] = 1)
+A detailed description of the dataset columns can be found in `dataset/data_description.md` (add or rename this file if needed).
 
-Average DTI = AVERAGE('loan_applications'[dtiratio])
+---
 
-Average Interest Rate = AVERAGE('loan_applications'[interestrate])
+## Folder Structure
 
-Average Credit Score = AVERAGE('borrower_profiles'[creditscore])
+```text
+loan-default-risk-analysis/
+├── README.md
+├── dataset/
+│   ├── borrower_profiles.csv
+│   ├── loan_applications.csv
+│   └── data_description.md
+├── dashboard/
+│   └── Loan_Default_Risk_Dashboard.pbix
+├── queries/
+│   └── loan_default_analysis.sql
+└── screenshots/
+    ├── overview.png
+    ├── risk_by_segment.png
+    ├── income_vs_default.png
+    └── region_default_rate.png
+```
 
-Average Annual Income = AVERAGE('borrower_profiles'[annualincome])
+Adjust names if your files are slightly different, but keep the structure similar so it looks clean.
 
-Key Insights & Recommendations
-Insight 1: Credit Score is the Strongest Risk Predictor
-Subprime borrowers (<620): 46% default rate
+---
 
-Super-prime borrowers (≥740): 13% default rate
+## SQL Analysis
 
-Action: Reject applications with credit score <600; require co-signer for 600–650 range.
+Key SQL analyses performed in this project include:
 
-Insight 2: High DTI + Subprime = Extreme Risk
-Subprime + DTI >40%: 57% default rate (14× difference from super-prime + DTI <20%)
+- Overall default rate across all loans  
+- Default rate by income band, age group, and employment type  
+- Relationship between `credit_to_income_ratio` and default  
+- Default rate by loan amount and tenure  
+- Region-wise distribution of good vs. bad loans  
 
-Action: Implement hard limit: reject loans where DTI >45% AND credit score <650.
+All important queries are stored in `queries/loan_default_analysis.sql`.
 
-Insight 3: Loan Purpose Matters
-Wedding: 28% default rate
+---
 
-Home Improvement: 27% default rate
+## Dashboard Features
 
-Auto Loan: 20% default rate
+The Power BI dashboard provides:
 
-Action: Increase interest rates by 1–2% on Wedding/Vacation loans; tighten approval thresholds.
+- KPI cards for total applications, total approved loans, default rate, and high‑risk share  
+- Overview page showing good vs. bad loans and key summary metrics  
+- Risk by segment: default rate by income band, age group, employment type, and marital status  
+- Income vs. default: charts linking income, EMI burden, and default behaviour  
+- Region-wise risk map or bar chart showing where default is more common  
+- Slicers to filter by time period, region, employment type, and income band  
 
-Insight 4: Renters Are Riskier Than Homeowners
-Renters: 28% default rate
+---
 
-Homeowners: 16% default rate
+## Key Insights
 
-Action: Require additional income documentation for renters; consider loan amount limits.
+Example insights you can refine based on your data:
 
-Tools & Technologies
-BI Tool: Power BI Desktop
+- Borrowers with **high credit-to-income ratio** show significantly higher default rates.  
+- Certain income bands and age groups are more prone to default than others.  
+- Self‑employed or unstable employment categories have a higher share of bad loans.  
+- Some regions show consistently higher default rates, indicating location-based risk.  
 
-Data Modeling: DAX (Data Analysis Expressions)
+Update these bullets with your real numbers once you review your dashboard.
 
-Calculated Columns: 8 engineered dimensions
+---
 
-Measures: 10 KPI calculations
+## Business Impact
 
-Data Sources: borrower_profiles.csv, loan_applications.csv (601 loans, 500 borrowers)
+This analysis and dashboard can help lenders:
 
-Files in This Repository
-README.md – Project documentation (this file)
+- Identify risky applicant profiles before loan approval  
+- Design better credit policies and eligibility rules  
+- Adjust interest rates or credit limits based on risk level  
+- Focus collections efforts on segments with high probability of default  
+- Support more transparent, data-driven lending decisions  
 
-borrower_profiles.csv – Borrower demographic and credit data
+---
 
-loan_applications.csv – Loan transaction and status data
+## Dashboard Screenshots
 
-screenshots/ – Power BI dashboard screenshots (3 pages)
+### Overview
+![Overview](screenshots/overview.png)
 
-How to Use This Project
-Review the README to understand the business problem and key findings.
+### Risk by Segment
+![Risk by Segment](screenshots/risk_by_segment.png)
 
-Open the Power BI file (if available) to interact with the dashboard:
+### Income vs Default
+![Income vs Default](screenshots/income_vs_default.png)
 
-Page 1: Portfolio overview with KPIs and loan status breakdown
+### Region-wise Default Rate
+![Region Default Rate](screenshots/region_default_rate.png)
 
-Page 2: Risk segmentation by credit score and DTI (heatmap)
+Replace the file names above if your screenshots have different names.
 
-Page 3: Loan characteristics (amount, interest rate, DTI scatter plot)
+---
 
-Use slicers to filter by year, loan purpose, or state.
+## How to Use
 
-Drill into the detail table on Page 3 to inspect individual loans.
+1. Download the dataset from the `dataset` folder.  
+2. Open the `Loan_Default_Risk_Dashboard.pbix` file from the `dashboard` folder in Power BI Desktop.  
+3. If needed, update the data source paths to point to your local CSV files.  
+4. Refresh the data and explore the visuals using the available filters.  
 
-Reference the DAX measures section to understand metric calculations.
+---
 
-Case Study Summary
-Analyzed a portfolio of 601 consumer loans to identify borrower and loan-level drivers of default and delinquency risk.
- Built a relational data model joining borrower profiles (credit score, income, employment, homeownership) with loan applications (amount, term, interest rate, DTI ratio, payment status). Engineered segmentation dimensions (credit score bands: subprime to super-prime; DTI bands: <20% to 50%+;
- income and age cohorts) and created 10 DAX measures quantifying portfolio default rate (24%), delinquency rate (41%), and loss exposure ($3M on defaulted loans). Identified high-risk segment: subprime borrowers with DTI >40% exhibit 57% default rate versus 4% for super-prime borrowers with DTI <20%, a 14× difference.
-Dashboard recommendations: tighten underwriting approval thresholds for subprime + high-DTI applicants, increase pricing on high-risk loan purposes (Wedding, Vacation, Home Improvement), and implement early-warning monitoring for accounts with rising DTI or existing debt burden.
- Expected impact: potential 40–50% reduction in default losses through selective underwriting tightening.
+## Skills Demonstrated
 
-Future Enhancements
-Add time-series analysis to track default rate trends over time.
+- Data cleaning and preparation for risk modelling  
+- SQL joins, aggregations, and calculated fields for risk metrics  
+- Building interactive dashboards in Power BI  
+- Creating DAX measures for default rate and risk segmentation  
+- Communicating credit risk insights to non-technical stakeholders  
 
-Implement predictive scoring model (logistic regression) to assign risk scores to new applicants.
+---
 
-Integrate payment behavior (days past due, payment amount variance) as early-warning indicators.
+## Author
 
-Add geographic cohort analysis by state and regional economic indicators.
+**Subhankar Das**  
+Aspiring Data Analyst | SQL | Power BI | Risk Analytics
 
-Build scenario planning dashboard to model impact of underwriting policy changes.
+- GitHub: [subhankar-das18](https://github.com/subhankar-das18)  
+- LinkedIn: *Add your LinkedIn link here*  
 
-Contact & Attribution
-Data Analyst: [Subhankar Das]
-LinkedIn: [https://www.linkedin.com/in/subhankar-das-01a1b6244/]
-GitHub: [https://github.com/subhankar-das18]
-Project Date: March 2026
-
+Feedback and suggestions are welcome through issues or pull requests.
