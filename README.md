@@ -167,6 +167,6 @@ This analysis and dashboard can help lenders:
 Aspiring Data Analyst | SQL | Power BI | Risk Analytics
 
 - GitHub: [subhankar-das18](https://github.com/subhankar-das18)  
-- LinkedIn: *www.linkedin.com/in/subhankar-das-the-analyst*  
+- LinkedIn: www.linkedin.com/in/subhankar-das-the-analyst  
 
 Feedback and suggestions are welcome through issues or pull requests.
