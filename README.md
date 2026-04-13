@@ -2,7 +2,7 @@
 
 A data analytics project that studies **loan default behaviour** across different borrower profiles. Using **SQL, Power BI, and Excel/CSV**, this project analyzes which customer segments are more likely to default and builds an interactive dashboard to support better credit risk decisions.
 
----
+--- 
 
 ## Project Overview
 
