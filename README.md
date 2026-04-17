@@ -1,4 +1,4 @@
-# Loan Default Risk Analysis   [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis)
+# Loan Default Risk Analysis   [![GitHub Repo stars](https://img.shields.io/github/stars/subhankar-das18/Loan-Default-Risk-Analysis?style=social)](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis) 
 
 A data analytics project that studies **loan default behaviour** across different borrower profiles. Using **SQL, Power BI, and Excel/CSV**, this project analyzes which customer segments are more likely to default and builds an interactive dashboard to support better credit risk decisions.
 
