@@ -37,7 +37,7 @@ Loan defaults cost financial institutions billions every year. This project simu
 
 ## 📊 Dashboard Preview
 
- ![Dashboard Preview](Dataset/Screenshot/Screenshot 2026-06-23 215932.png)
+ ![Dashboard Preview](https://github.com/subhankar-das18/Loan-Default-Risk-Analysis/blob/main/Dataset/Screenshot/Screenshot%202026-06-23%20215932.png?raw=true)
 
 ---
 
