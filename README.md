@@ -37,10 +37,7 @@ Loan defaults cost financial institutions billions every year. This project simu
 
 ## 📊 Dashboard Preview
 
-> 📸 *Screenshot coming soon — upload your dashboard image and replace this section with:*
-> ```
-> ![Dashboard Preview](YOUR-IMAGE-LINK-HERE)
-> ```
+ ![Dashboard Preview](Dataset/Screenshot/Screenshot 2026-06-23 215932.png)
 
 ---
 
