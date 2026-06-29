@@ -7,7 +7,7 @@
 
 > **Business Question:** Which borrower segments are most likely to default — and what risk factors should the lending team act on immediately?
 
---- 
+---  
 
 ## 📌 Project Overview
 
